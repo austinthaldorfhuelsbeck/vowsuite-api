@@ -1,0 +1,16 @@
+[
+    {
+        "company_id": "1694892854824",
+        "user_id": "1694892853799",
+        "company_name": "Foo Production Company",
+        "img_URL": "foo.jpg",
+        "website_URL": "foo.com",
+        "youtube_URL": "youtube.com/foo",
+        "instagram_URL": "instagram.com/foo",
+        "facebook_URL": "facebook.com/foo",
+        "vimeo_URL": "vimeo.com/foo",
+        "tiktok_URL": "tiktok.com/foo",
+        "created_at": "2023-09-16T19:35:10.709Z",
+        "updated_at": "2023-09-16T19:35:10.709Z"
+    }
+]
