@@ -32,7 +32,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const helmet_1 = __importDefault(require("helmet"));
 const nocache_1 = __importDefault(require("nocache"));
 const users_router_1 = require("./users/users.router");
 const companies_router_1 = require("./companies/companies.router");
@@ -51,21 +50,6 @@ exports.app = (0, express_1.default)();
 // Middleware
 exports.app.use(express_1.default.json());
 exports.app.set("json spaces", 2);
-exports.app.use((0, helmet_1.default)({
-    hsts: {
-        maxAge: 31536000,
-    },
-    contentSecurityPolicy: {
-        useDefaults: false,
-        directives: {
-            "default-src": ["'none'"],
-            "frame-ancestors": ["'none'"],
-        },
-    },
-    frameguard: {
-        action: "deny",
-    },
-}));
 exports.app.use((req, res, next) => {
     res.contentType("application/json; charset=utf-8");
     next();

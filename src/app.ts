@@ -4,7 +4,6 @@
 
 import express from "express"
 import cors from "cors"
-import helmet from "helmet"
 import nocache from "nocache"
 import { usersRouter } from "./users/users.router"
 import { companiesRouter } from "./companies/companies.router"
@@ -27,23 +26,6 @@ export const app = express()
 // Middleware
 app.use(express.json())
 app.set("json spaces", 2)
-app.use(
-	helmet({
-		hsts: {
-			maxAge: 31536000,
-		},
-		contentSecurityPolicy: {
-			useDefaults: false,
-			directives: {
-				"default-src": ["'none'"],
-				"frame-ancestors": ["'none'"],
-			},
-		},
-		frameguard: {
-			action: "deny",
-		},
-	}),
-)
 app.use((req, res, next) => {
 	res.contentType("application/json; charset=utf-8")
 	next()
