@@ -4,7 +4,7 @@
   "description": "Express API for serving Vowsuite user content",
   "main": "src/server.ts",
   "scripts": {
-    "build": "npx tsc",
+    "build": "npm install && npx tsc",
     "start": "node src/server.js",
     "dev": "ts-node-dev --respawn --pretty --transpile-only ."
   },
