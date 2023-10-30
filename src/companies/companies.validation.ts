@@ -3,7 +3,7 @@
  */
 import { Request, Response, NextFunction } from "express"
 import * as CompaniesService from "./companies.service"
-import { BaseCompany, Company } from "./company.interface"
+import { IBaseCompany, ICompany } from "../interfaces/objects.interface"
 import { errorHandler } from "../middleware/error.handlers"
 
 /**
@@ -15,7 +15,7 @@ export const isValidCompany = (
     next: NextFunction
 ) => {
     // Get company from create/update req
-    const company: BaseCompany = req.body
+    const company: IBaseCompany = req.body
     // Build error message
     let message: string = ""
     if (!company.user_id) message += "User ID required. "
@@ -44,7 +44,7 @@ export const companyExists = async (
         errorHandler({ status: 400, message: "Company ID required." }, res)
     }
     // Read the company
-    const company: Company = await CompaniesService.read(parseInt(id))
+    const company: ICompany = await CompaniesService.read(parseInt(id))
     // Return if found
     if (company) {
         res.locals.foundCompany = company
@@ -59,21 +59,21 @@ export const appendData = async (
     next: NextFunction
 ) => {
     // Get company from locals
-    const company: Company = res.locals.validCompany
+    const company: ICompany = res.locals.validCompany
     // Append placeholder img URL if none provided
     if (!company.img_URL) {
         company.img_URL = "https://i.stack.imgur.com/HQwHI.jpg"
     }
     // Append hex data if none provided
-    if (!company.hex1) {
-        company.hex1 = "c39a32"
-    }
-    if (!company.hex2) {
-        company.hex2 = "f3efe0"
-    }
-    if (!company.hex3) {
-        company.hex3 = "d9bb6d"
-    }
+    // if (!company.hex1) {
+    //     company.hex1 = "c39a32"
+    // }
+    // if (!company.hex2) {
+    //     company.hex2 = "f3efe0"
+    // }
+    // if (!company.hex3) {
+    //     company.hex3 = "d9bb6d"
+    // }
     // Append created date if none provided
     if (!company.created_at) {
         company.created_at = new Date()

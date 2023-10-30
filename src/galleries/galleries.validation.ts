@@ -3,7 +3,7 @@
  */
 import { Request, Response, NextFunction } from "express"
 import * as GalleriesService from "./galleries.service"
-import { IBaseGallery, IGallery, ICompany } from "../interfaces/objects.interface"
+import { IBaseGallery, IGallery } from "../interfaces/objects.interface"
 import { errorHandler } from "../middleware/error.handlers";
 
 /**
