@@ -1,0 +1,44 @@
+[
+    {
+        "company_id": "1694892854824",
+        "label": "Website",
+        "target": "https://foo.com",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    },
+    {
+        "company_id": "1694892854824",
+        "label": "YouTube",
+        "target": "https://youtube.com/foo",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    },
+    {
+        "company_id": "1694892854824",
+        "label": "Instagram",
+        "target": "https://instagram.com/foo",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    },
+    {
+        "company_id": "1694892854824",
+        "label": "Facebook",
+        "target": "https://facebook.com/foo",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    },
+    {
+        "company_id": "1694892854824",
+        "label": "Vimeo",
+        "target": "https://vimeo.com/foo",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    },
+    {
+        "company_id": "1694892854824",
+        "label": "TikTok",
+        "target": "https://tiktok.com/foo",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    }
+]

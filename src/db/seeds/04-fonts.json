@@ -1,0 +1,26 @@
+[
+    {
+        "font_id": "169882706561",
+        "font_name": "Georgia",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    },
+    {
+        "font_id": "169882784672",
+        "font_name": "Playfair Display",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    },
+    {
+        "font_id": "169882786754",
+        "font_name": "Roboto Mono",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    },
+    {
+        "font_id": "1698827879465",
+        "font_name": "Futura",
+        "created_at": "2023-11-01T07:15:51.150Z",
+        "updated_at": "2023-11-01T07:15:51.150Z"
+    }
+]
