@@ -37,7 +37,7 @@ export const destroy = async (id: number): Promise<void> => {
     return knex("galleries").where({ gallery_id: id }).del()
 }
 
-export const listVideosByGalleryID = async (id: number): Promise<Array<IVideo>> => {
+export const listVideos = async (id: number): Promise<Array<IVideo>> => {
     return knex("galleries as g")
         .join("videos as v", "g.gallery_id", "v.gallery_id")
         .distinct("v.*")

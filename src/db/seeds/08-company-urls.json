@@ -1,5 +1,6 @@
 [
     {
+        "company_url_id": "1694893527451",
         "company_id": "1694892854824",
         "label": "Website",
         "target": "https://foo.com",
@@ -7,6 +8,7 @@
         "updated_at": "2023-11-01T07:15:51.150Z"
     },
     {
+        "company_url_id": "1694893527452",
         "company_id": "1694892854824",
         "label": "YouTube",
         "target": "https://youtube.com/foo",
@@ -14,6 +16,7 @@
         "updated_at": "2023-11-01T07:15:51.150Z"
     },
     {
+        "company_url_id": "1694893527453",
         "company_id": "1694892854824",
         "label": "Instagram",
         "target": "https://instagram.com/foo",
@@ -21,6 +24,7 @@
         "updated_at": "2023-11-01T07:15:51.150Z"
     },
     {
+        "company_url_id": "1694893527454",
         "company_id": "1694892854824",
         "label": "Facebook",
         "target": "https://facebook.com/foo",
@@ -28,6 +32,7 @@
         "updated_at": "2023-11-01T07:15:51.150Z"
     },
     {
+        "company_url_id": "1694893527455",
         "company_id": "1694892854824",
         "label": "Vimeo",
         "target": "https://vimeo.com/foo",
@@ -35,6 +40,7 @@
         "updated_at": "2023-11-01T07:15:51.150Z"
     },
     {
+        "company_url_id": "1694893527456",
         "company_id": "1694892854824",
         "label": "TikTok",
         "target": "https://tiktok.com/foo",

@@ -24,6 +24,12 @@ galleriesRouter
     .delete(GalleriesController.delete)
     .all(methodNotAllowed)
 galleriesRouter
+    .route("/:gallery_id/colors")
+    .get(GalleriesController.listGalleryColors)
+    .post(GalleriesController.createGalleryColor)
+    .put(GalleriesController.updateGalleryColor)
+    .all(methodNotAllowed)
+galleriesRouter
     .route("/:gallery_id/videos")
-    .get(GalleriesController.listVideosByGalleryID)
+    .get(GalleriesController.listVideos)
     .all(methodNotAllowed)

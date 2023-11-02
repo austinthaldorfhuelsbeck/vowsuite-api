@@ -18,7 +18,7 @@ export const usersRouter = express.Router()
 
 usersRouter
     .route("/")
-    .get(UsersController.readUserByEmail)
+    .get(UsersController.readByEmail)
     .post(UsersController.create)
     .all(methodNotAllowed)
 usersRouter
@@ -29,5 +29,5 @@ usersRouter
     .all(methodNotAllowed)
 usersRouter
     .route("/:user_id/galleries")
-    .get(UsersController.listGalleriesByUserID)
+    .get(UsersController.listGalleries)
     .all(methodNotAllowed)

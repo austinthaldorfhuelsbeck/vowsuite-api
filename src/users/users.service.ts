@@ -39,22 +39,14 @@ export const destroy = async (id: number): Promise<void> => {
     return knex("users").where({ user_id: id }).del()
 }
 
-export const readUserByEmail = async (user_email: string): Promise<IUser> => {
+export const readByEmail = async (user_email: string): Promise<IUser> => {
     return knex("users")
         .select("*")
         .where({ email: user_email })
         .then((foundUsers) => foundUsers[0])
 }
 
-export const readCompanyByUserID = async (id: number): Promise<ICompany> => {
-    return knex("users as u")
-        .join("companies as c", "u.user_id", "c.user_id")
-        .distinct("c.*")
-        .where({ "c.user_id": id })
-        .then((foundCompanies) => foundCompanies[0])
-}
-
-export const listGalleriesByUserID = async (id: number): Promise<IGallery[]> => {
+export const listGalleries = async (id: number): Promise<IGallery[]> => {
     return knex("users as u")
         .join("galleries as g", "u.user_id", "g.user_id")
         .distinct("g.*")

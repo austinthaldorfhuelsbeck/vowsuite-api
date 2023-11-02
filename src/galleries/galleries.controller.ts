@@ -1,7 +1,7 @@
 /**
  * Required External Modules and Interfaces
  */
-import express, { Request, Response } from "express"
+import { Request, Response } from "express"
 import { IBaseGallery, IGallery, IVideo } from "../interfaces/objects.interface"
 import * as GalleriesValidation from "./galleries.validation"
 import * as GalleriesService from "./galleries.service"
