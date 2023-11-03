@@ -1,83 +1,183 @@
 // External Modules
-import { Request, Response } from "express"
-import { IBaseCompany, ICompany, IGallery } from "../interfaces/objects.interface"
-import * as CompaniesValidation from "./companies.validation"
-import * as CompaniesService from "./companies.service"
-import * as GalleriesService from "../galleries/galleries.service"
+import { NextFunction, Request, Response } from "express"
+import {
+	IBaseCompany,
+	IBaseCompanyColor,
+	IBaseCompanyUrl,
+	IColor,
+	ICompany,
+	ICompanyColor,
+	ICompanyUrl,
+} from "../interfaces/objects.interface"
+
 import { errorHandler } from "../middleware/error.handlers"
+import {
+	isValidCompany,
+	isValidCompanyUrl,
+	isValidCompanyColor,
+	companyExists,
+	companyUrlExists,
+	companyColorExists,
+	appendData,
+	appendChildren,
+} from "./companies.validation"
+import * as CompaniesService from "./companies.service"
 
 // Controllers
 const create = async (req: Request, res: Response) => {
-    try {
-        const company: ICompany = res.locals.validCompany
-        company.company_id = new Date().valueOf() // add company ID
-        const newCompany: ICompany = await CompaniesService.create(company)
-        res.status(201).json(newCompany)
-    } catch (err) {
-        errorHandler(err, res)
-    }
+	try {
+		const company: ICompany = res.locals.validCompany
+		company.company_id = new Date().valueOf() // add id
+		const newCompany: ICompany = await CompaniesService.create(company)
+		res.json(newCompany)
+	} catch (err) {
+		errorHandler(err, res)
+	}
 }
 
 const read = async (req: Request, res: Response) => {
-    try {
-        const responseCompany: ICompany = res.locals.foundCompany
-        res.status(200).json(responseCompany)
-    } catch (err) {
-        errorHandler(err, res)
-    }
+	try {
+		const response: ICompany = res.locals.foundCompany
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
 }
 
-const update = async (req: Request, res: Response) => {
-    try {
-        const updatedCompany: IBaseCompany = res.locals.validCompany
-        const id: number = parseInt(res.locals.foundCompany.company_id)
-        const responseCompany: ICompany = await CompaniesService.update(updatedCompany, id)
-        res.status(204).json(responseCompany)
-    } catch (err) {
-        errorHandler(err, res)
-    }
+const update = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const updatedCompany: IBaseCompany = res.locals.validCompany
+		const id: number = parseInt(res.locals.foundCompany.company_id)
+		const response: ICompany = await CompaniesService.update(
+			updatedCompany,
+			id,
+		)
+		res.locals.foundCompany = response
+		return next()
+	} catch (err) {
+		errorHandler(err, res)
+	}
 }
 
 const destroy = async (req: Request, res: Response) => {
-    try {
-        const id: number = parseInt(res.locals.foundCompany.company_id)
-        const response: void = await CompaniesService.destroy(id)
-        res.status(200).json(response)
-    } catch (err) {
-        errorHandler(err, res)
-    }
+	try {
+		const id: number = parseInt(res.locals.foundCompany.company_id)
+		const response: void = await CompaniesService.destroy(id)
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
 }
 
-const readByUserId = async (req: Request, res: Response) => {
-    try {
-        const id: number = parseInt(String(req.query.user_id))
-        const response: ICompany = await CompaniesService.readByUserId(id)
-        res.status(204).json(response)
-    } catch (err) {
-        errorHandler(err, res)
-    }
+const readByUserId = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	try {
+		const id: number = parseInt(String(req.query.user_id))
+		const response: ICompany = await CompaniesService.readByUserId(id)
+		res.locals.foundCompany = response
+		return next()
+	} catch (err) {
+		errorHandler(err, res)
+	}
 }
 
-// const listCompanyColors = async (req: Request, res: Response) => {
-//     try {
-        
-//     }
-// }
+const listCompanyUrls = async (req: Request, res: Response) => {
+	try {
+		const id: number = parseInt(req.params.company_id)
+		const response: ICompanyUrl[] = await CompaniesService.listUrls(id)
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
+}
+
+const createCompanyUrl = async (req: Request, res: Response) => {
+	try {
+		const companyUrl: ICompanyUrl = res.locals.validCompanyUrl
+		companyUrl.company_url_id = new Date().valueOf() // add id
+		const response: ICompanyUrl =
+			await CompaniesService.createUrl(companyUrl)
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
+}
+
+const updateCompanyUrl = async (req: Request, res: Response) => {
+	console.log("Update company url!")
+	try {
+		const updatedCompanyUrl: IBaseCompanyUrl = res.locals.validCompanyUrl
+		const id: number = parseInt(res.locals.foundCompanyUrl.company_url_id)
+		console.log("URL: ", updatedCompanyUrl, "ID: ", id)
+		const response: ICompanyUrl = await CompaniesService.updateUrl(
+			updatedCompanyUrl,
+			id,
+		)
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
+}
+
+const listCompanyColors = async (req: Request, res: Response) => {
+	try {
+		const id: number = parseInt(req.params.company_id)
+		const response: IColor[] = await CompaniesService.listColors(id)
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
+}
+
+const createCompanyColor = async (req: Request, res: Response) => {
+	try {
+		const companyColor: ICompanyColor = res.locals.validCompanyColor
+		companyColor.company_color_id = new Date().valueOf() // add id
+		const response: ICompanyColor =
+			await CompaniesService.createColor(companyColor)
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
+}
+
+const updateCompanyColor = async (req: Request, res: Response) => {
+	console.log("Update company color!")
+	try {
+		const updatedCompanyColor: IBaseCompanyColor =
+			res.locals.validCompanyColor
+		const id: number = parseInt(
+			res.locals.foundCompanyColor.company_color_id,
+		)
+		console.log("Color: ", updatedCompanyColor, "ID: ", id)
+		const response: ICompanyColor = await CompaniesService.updateColor(
+			updatedCompanyColor,
+			id,
+		)
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
+}
 
 // Exports
 export const CompaniesController = {
-    create: [
-        CompaniesValidation.isValidCompany,
-        CompaniesValidation.appendData,
-        create
-    ],
-    read: [CompaniesValidation.companyExists, read],
-    update: [CompaniesValidation.companyExists,
-        CompaniesValidation.isValidCompany,
-        update
-    ],
-    delete: [CompaniesValidation.companyExists, destroy],
-    readCompanyByEmail: [readCompanyByEmail],
-    readCompanyByCompanyID: [CompaniesValidation.companyExists, readCompanyByCompanyID],
-    listGalleriesByCompanyID: [CompaniesValidation.companyExists, listGalleriesByCompanyID]
+	create: [isValidCompany, appendData, create],
+	read: [companyExists, appendChildren, read],
+	update: [companyExists, isValidCompany, update, appendChildren, read],
+	delete: [companyExists, destroy],
+	readByUserId: [readByUserId, companyExists, appendChildren, read],
+	listCompanyUrls,
+	createCompanyUrl: [isValidCompanyUrl, createCompanyUrl],
+	updateCompanyUrl: [companyUrlExists, isValidCompanyUrl, updateCompanyUrl],
+	listCompanyColors,
+	createCompanyColor: [isValidCompanyColor, createCompanyColor],
+	updateCompanyColor: [
+		companyColorExists,
+		isValidCompanyColor,
+		updateCompanyColor,
+	],
 }

@@ -46,7 +46,7 @@ app.use(
 
 // Route handlers
 app.use("/users", usersRouter)
-// app.use("/companies", companiesRouter)
+app.use("/companies", companiesRouter)
 // app.use("/galleries", galleriesRouter)
 // app.use("/videos", videosRouter)
 // app.use("/fonts", fontsRouter)

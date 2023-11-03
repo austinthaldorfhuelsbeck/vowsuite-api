@@ -71,7 +71,6 @@ const listGalleries = async (req: Request, res: Response) => {
 
 
 // Exports
-
 export const UsersController = {
     create: [
         isValidUser,
