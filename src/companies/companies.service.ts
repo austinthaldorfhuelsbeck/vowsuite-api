@@ -49,14 +49,6 @@ export const readByUserId = async (id: number): Promise<ICompany> => {
 		.then((foundCompanies) => foundCompanies[0])
 }
 
-export const listColors = async (id: number): Promise<IColor[]> => {
-	return knex("colors as co")
-		.join("company_colors as cc", "co.color_id", "cc.color_id")
-		.join("companies as c", "c.company_id", "cc.company_id")
-		.distinct("co.*")
-		.where({ "c.company_id": id })
-}
-
 export const createColor = async (
 	newCompanyColor: IBaseCompanyColor,
 ): Promise<ICompanyColor> => {
@@ -82,6 +74,14 @@ export const updateColor = async (
 		.where({ company_color_id: id })
 		.update(updatedCompanyColor, "*")
 		.then((updatedCompanyColors) => updatedCompanyColors[0])
+}
+
+export const listColors = async (id: number): Promise<IColor[]> => {
+	return knex("colors as co")
+		.join("company_colors as cc", "co.color_id", "cc.color_id")
+		.join("companies as c", "c.company_id", "cc.company_id")
+		.distinct("co.*")
+		.where({ "c.company_id": id })
 }
 
 export const listUrls = async (id: number): Promise<ICompanyUrl[]> => {

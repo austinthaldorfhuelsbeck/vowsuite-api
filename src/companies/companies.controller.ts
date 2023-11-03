@@ -107,11 +107,9 @@ const createCompanyUrl = async (req: Request, res: Response) => {
 }
 
 const updateCompanyUrl = async (req: Request, res: Response) => {
-	console.log("Update company url!")
 	try {
 		const updatedCompanyUrl: IBaseCompanyUrl = res.locals.validCompanyUrl
 		const id: number = parseInt(res.locals.foundCompanyUrl.company_url_id)
-		console.log("URL: ", updatedCompanyUrl, "ID: ", id)
 		const response: ICompanyUrl = await CompaniesService.updateUrl(
 			updatedCompanyUrl,
 			id,
@@ -145,14 +143,12 @@ const createCompanyColor = async (req: Request, res: Response) => {
 }
 
 const updateCompanyColor = async (req: Request, res: Response) => {
-	console.log("Update company color!")
 	try {
 		const updatedCompanyColor: IBaseCompanyColor =
 			res.locals.validCompanyColor
 		const id: number = parseInt(
 			res.locals.foundCompanyColor.company_color_id,
 		)
-		console.log("Color: ", updatedCompanyColor, "ID: ", id)
 		const response: ICompanyColor = await CompaniesService.updateColor(
 			updatedCompanyColor,
 			id,

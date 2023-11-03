@@ -1,3 +1,4 @@
+// External Modules
 import { Request, Response, NextFunction } from "express"
 import * as CompaniesService from "../companies/companies.service"
 import {
@@ -71,6 +72,7 @@ export const isValidCompanyColor = (
 		return next()
 	}
 }
+
 export const companyExists = async (
 	req: Request,
 	res: Response,
@@ -154,7 +156,11 @@ export const companyColorExists = async (
 	)
 }
 
-export const appendData = async (req: Request, res: Response, next: NextFunction) => {
+export const appendData = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
 	// Get company from locals
 	const company: ICompany = res.locals.validCompany
 	// Add created date if none provided
