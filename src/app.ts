@@ -48,7 +48,7 @@ app.use(
 app.use("/users", usersRouter)
 app.use("/companies", companiesRouter)
 app.use("/galleries", galleriesRouter)
-// app.use("/videos", videosRouter)
+app.use("/videos", videosRouter)
 // app.use("/fonts", fontsRouter)
 // app.use("/colors", colorsRouter)
 //Error handlers

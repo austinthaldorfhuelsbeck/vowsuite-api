@@ -1,28 +1,16 @@
-/**
- * Required External Modules and Interfaces
- */
-
+// External Modules
 import express from "express"
 import { VideosController } from "./videos.controller"
 import { methodNotAllowed } from "../middleware/error.handlers"
 
-/**
- * Router Definition
- */
-
+// Routers
 export const videosRouter = express.Router()
 
-/**
- * Route Definitions
- */
-
+// Routes
+videosRouter.route("/").post(VideosController.create).all(methodNotAllowed)
 videosRouter
-    .route("/")
-    .post(VideosController.create)
-    .all(methodNotAllowed)
-videosRouter
-    .route("/:video_id")
-    .get(VideosController.read)
-    .put(VideosController.update)
-    .delete(VideosController.delete)
-    .all(methodNotAllowed)
+	.route("/:video_id")
+	.get(VideosController.read)
+	.put(VideosController.update)
+	.delete(VideosController.delete)
+	.all(methodNotAllowed)
