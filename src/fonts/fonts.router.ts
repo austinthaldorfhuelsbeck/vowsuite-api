@@ -1,28 +1,16 @@
-/**
- * Required External Modules and Interfaces
- */
-
+// External Modules
 import express from "express"
 import { FontsController } from "./fonts.controller"
 import { methodNotAllowed } from "../middleware/error.handlers"
 
-/**
- * Router Definition
- */
-
+// Routers
 export const fontsRouter = express.Router()
 
-/**
- * Route Definitions
- */
-
+// Routes
+fontsRouter.route("/").post(FontsController.create).all(methodNotAllowed)
 fontsRouter
-    .route("/")
-    .post(FontsController.create)
-    .all(methodNotAllowed)
-fontsRouter
-    .route("/:font_id")
-    .get(FontsController.read)
-    .put(FontsController.update)
-    .delete(FontsController.delete)
-    .all(methodNotAllowed)
+	.route("/:font_id")
+	.get(FontsController.read)
+	.put(FontsController.update)
+	.delete(FontsController.delete)
+	.all(methodNotAllowed)
