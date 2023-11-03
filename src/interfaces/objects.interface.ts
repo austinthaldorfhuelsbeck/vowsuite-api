@@ -69,9 +69,9 @@ export interface IFont extends IBaseFont {
 }
 
 export interface IBaseColor {
-    hex: string
-    created_at: Date
-    updated_at: Date
+	value: string
+	created_at: Date
+	updated_at: Date
 }
 
 export interface IColor extends IBaseColor {
