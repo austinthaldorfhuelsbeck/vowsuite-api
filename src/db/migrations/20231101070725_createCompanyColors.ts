@@ -4,7 +4,7 @@ export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable("company_colors", (table) => {
         table.bigInteger("company_color_id").primary()
         table.bigInteger("company_id")
-        table.bigInteger("color_id")
+        table.string("value")
         table.timestamps(true, true)
     })
 }

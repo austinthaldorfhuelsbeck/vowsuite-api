@@ -84,6 +84,12 @@ export const listColors = async (id: number): Promise<IColor[]> => {
 		.where({ "c.company_id": id })
 }
 
+export const listCompanyColors = async (
+	id: number,
+): Promise<ICompanyColor[]> => {
+	return knex("company_colors").select("*").where({ company_id: id })
+}
+
 export const listUrls = async (id: number): Promise<ICompanyUrl[]> => {
 	return knex("company_urls").select("*").where({ company_id: id })
 }

@@ -123,7 +123,8 @@ const updateCompanyUrl = async (req: Request, res: Response) => {
 const listCompanyColors = async (req: Request, res: Response) => {
 	try {
 		const id: number = parseInt(req.params.company_id)
-		const response: IColor[] = await CompaniesService.listColors(id)
+		const response: ICompanyColor[] =
+			await CompaniesService.listCompanyColors(id)
 		res.json(response)
 	} catch (err) {
 		errorHandler(err, res)

@@ -13,14 +13,14 @@ export interface IUser extends IBaseUser {
 }
 
 export interface IBaseCompany {
-    user_id: number
-    font_id: number
-    company_name: string
-    img_URL: string
-    created_at: Date
-    updated_at: Date
-    colors: IColor[]
-    company_urls: ICompanyUrl[]
+	user_id: number
+	font_id: number
+	company_name: string
+	img_URL: string
+	created_at: Date
+	updated_at: Date
+	colors: ICompanyColor[]
+	company_urls: ICompanyUrl[]
 }
 
 export interface ICompany extends IBaseCompany {
@@ -28,14 +28,14 @@ export interface ICompany extends IBaseCompany {
 }
 
 export interface IBaseGallery {
-    user_id: number
-    font_id: number
-    gallery_name: string
-    img_URL: string
-    created_at: Date
-    updated_at: Date
-    videos: IVideo[]
-    colors: IColor[]
+	user_id: number
+	font_id: number
+	gallery_name: string
+	img_URL: string
+	created_at: Date
+	updated_at: Date
+	videos: IVideo[]
+	colors: IGalleryColor[]
 }
 
 export interface IGallery extends IBaseGallery {
@@ -79,21 +79,21 @@ export interface IColor extends IBaseColor {
 }
 
 export interface IBaseGalleryColor {
-    gallery_id: number
-    color_id: number
-    created_at: Date
-    updated_at: Date
+	gallery_id: number
+	value: string
+	created_at: Date
+	updated_at: Date
 }
 
 export interface IGalleryColor extends IBaseGalleryColor {
-    gallery_color_id: number
+	gallery_color_id: number
 }
 
 export interface IBaseCompanyColor {
-    company_id: number
-    color_id: number
-    created_at: Date
-    updated_at: Date
+	company_id: number
+	value: string
+	created_at: Date
+	updated_at: Date
 }
 
 export interface ICompanyColor extends IBaseCompanyColor {

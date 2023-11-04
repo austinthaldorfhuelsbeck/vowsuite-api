@@ -63,7 +63,7 @@ export const isValidCompanyColor = (
 	// Build error message
 	let message: string = ""
 	if (!companyColor.company_id) message += "Company ID required. "
-	if (!companyColor.color_id) message += "Color ID required. "
+	if (!companyColor.value) message += "Hex value required. "
 	// Return err or pass thru locals
 	if (message !== "") {
 		errorHandler({ status: 400, message }, res)
@@ -184,7 +184,7 @@ export const appendChildren = async (
 	// Add urls and colors
 	const id: number = company.company_id
 	company.company_urls = await CompaniesService.listUrls(id)
-	company.colors = await CompaniesService.listColors(id)
+	company.colors = await CompaniesService.listCompanyColors(id)
 	// Pass thru completed object
 	res.locals.validCompany = company
 	return next()

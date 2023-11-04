@@ -8,12 +8,11 @@ import { galleriesRouter } from "./galleries/galleries.router"
 import { videosRouter } from "./videos/videos.router"
 import * as ErrorHandlers from "./middleware/error.handlers"
 import { fontsRouter } from "./fonts/fonts.router"
-import { colorsRouter } from "./colors/colors.router"
 // import { validateAccessToken } from "./middleware/auth0.middleware";
 
 // App Definition
 export const app = express()
-const CLIENT_ORIGIN_URL: string | undefined = process.env.CLIENT_ORIGIN_URL
+// const CLIENT_ORIGIN_URL: string | undefined = process.env.CLIENT_ORIGIN_URL
 
 // Middleware
 app.use(express.json())
@@ -25,8 +24,8 @@ app.use((req, res, next) => {
 app.use(nocache())
 app.use(
 	cors({
-		origin: CLIENT_ORIGIN_URL,
-		methods: ["GET"],
+		// origin: CLIENT_ORIGIN_URL,
+		// methods: ["GET"],
 		// allowedHeaders: ["Authorization", "Content-Type"],
 		// maxAge: 86400,
 	}),
@@ -40,7 +39,6 @@ app.use("/companies", companiesRouter)
 app.use("/galleries", galleriesRouter)
 app.use("/videos", videosRouter)
 app.use("/fonts", fontsRouter)
-app.use("/colors", colorsRouter)
 
 //Error handlers
 app.use(ErrorHandlers.notFound)
