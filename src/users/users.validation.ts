@@ -1,16 +1,12 @@
-/**
- * Required External Modules and Interfaces
- */
-
-import express, { Request, Response, NextFunction } from "express"
+// External Modules
+import { Request, Response, NextFunction } from "express"
 import * as UsersService from "./users.service"
-import { IBaseUser, IUser } from "../interfaces/objects.interface"
+import * as CompaniesService from "../companies/companies.service"
+import * as GalleriesService from "../galleries/galleries.service"
+import { IBaseUser, IGallery, IUser } from "../interfaces/objects.interface"
 import { errorHandler } from "../middleware/error.handlers"
 
-/**
- * Middleware Definitions
- */
-
+// Functions
 export const isValidUser = (
     req: Request,
     res: Response,
@@ -63,12 +59,32 @@ export const appendData = async (
 ) => {
     // Get user from locals
     const user: IUser = res.locals.validUser
-    // Append created date if none provided
+    // Add created date if none provided
     if (!user.created_at) {
         user.created_at = new Date()
     }
     // Append updated date
     user.updated_at = new Date()
+    // Pass thru completed object
+    res.locals.validUser = user
+    return next()
+}
+
+export const appendChildren = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    // Get user from locals
+    const user: IUser = res.locals.foundUser
+    // Add company and galleries
+    const id: number = user.user_id
+    user.company = await CompaniesService.readByUserId(id)
+    user.galleries = await UsersService.listGalleries(id)
+    // Add videos to galleries
+    user.galleries.forEach(async (gallery: IGallery) => {
+        gallery.videos = await GalleriesService.listVideos(gallery.gallery_id)
+    })
     // Pass thru completed object
     res.locals.validUser = user
     return next()

@@ -13,17 +13,14 @@ export interface IUser extends IBaseUser {
 }
 
 export interface IBaseCompany {
-    user_id: number
-    company_name: string
-    img_URL: string
-    website_URL: string
-    youtube_URL: string
-    instagram_URL: string
-    facebook_URL: string
-    vimeo_URL: string
-    tiktok_URL: string
-    created_at: Date
-    updated_at: Date
+	user_id: number
+	font_id: number
+	company_name: string
+	img_URL: string
+	created_at: Date
+	updated_at: Date
+	colors: ICompanyColor[]
+	company_urls: ICompanyUrl[]
 }
 
 export interface ICompany extends IBaseCompany {
@@ -31,16 +28,14 @@ export interface ICompany extends IBaseCompany {
 }
 
 export interface IBaseGallery {
-    user_id: number
-    gallery_name: string
-    img_URL: string
-    font: string
-    hex1: string
-    hex2: string
-    hex3: string
-    created_at: Date
-    updated_at: Date
-    videos: IVideo[]
+	user_id: number
+	font_id: number
+	gallery_name: string
+	img_URL: string
+	created_at: Date
+	updated_at: Date
+	videos: IVideo[]
+	colors: IGalleryColor[]
 }
 
 export interface IGallery extends IBaseGallery {
@@ -61,4 +56,58 @@ export interface IBaseVideo {
 
 export interface IVideo extends IBaseVideo {
     video_id: number
+}
+
+export interface IBaseFont {
+    font_name: string
+    created_at: Date
+    updated_at: Date
+}
+
+export interface IFont extends IBaseFont {
+    font_id: number
+}
+
+export interface IBaseColor {
+	value: string
+	created_at: Date
+	updated_at: Date
+}
+
+export interface IColor extends IBaseColor {
+    color_id: number
+}
+
+export interface IBaseGalleryColor {
+	gallery_id: number
+	value: string
+	created_at: Date
+	updated_at: Date
+}
+
+export interface IGalleryColor extends IBaseGalleryColor {
+	gallery_color_id: number
+}
+
+export interface IBaseCompanyColor {
+	company_id: number
+	value: string
+	created_at: Date
+	updated_at: Date
+}
+
+export interface ICompanyColor extends IBaseCompanyColor {
+    company_color_id: number
+}
+
+export interface IBaseCompanyUrl {
+    company_id: number
+    label: string
+    target: string
+    created_at: Date
+    updated_at: Date
+}
+
+export interface ICompanyUrl extends IBaseCompanyUrl {
+    company_url_id: number
 }

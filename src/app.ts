@@ -1,7 +1,4 @@
-/**
- * Required External Modules
- */
-
+// External Modules
 import express from "express"
 import cors from "cors"
 import nocache from "nocache"
@@ -10,18 +7,12 @@ import { companiesRouter } from "./companies/companies.router"
 import { galleriesRouter } from "./galleries/galleries.router"
 import { videosRouter } from "./videos/videos.router"
 import * as ErrorHandlers from "./middleware/error.handlers"
+import { fontsRouter } from "./fonts/fonts.router"
 // import { validateAccessToken } from "./middleware/auth0.middleware";
 
-/**
- * App Definition
- */
-
+// App Definition
 export const app = express()
-// const CLIENT_ORIGIN_URL: string | undefined = process.env.CLIENT_ORIGIN_URL;
-
-/**
- * Middleware and Handlers
- */
+// const CLIENT_ORIGIN_URL: string | undefined = process.env.CLIENT_ORIGIN_URL
 
 // Middleware
 app.use(express.json())
@@ -32,13 +23,12 @@ app.use((req, res, next) => {
 })
 app.use(nocache())
 app.use(
-	cors(),
-	// {
-	//     origin: CLIENT_ORIGIN_URL,
-	//     methods: ["GET"],
-	//     allowedHeaders: ["Authorization", "Content-Type"],
-	//     maxAge: 86400,
-	// }
+	cors({
+		// origin: CLIENT_ORIGIN_URL,
+		// methods: ["GET"],
+		// allowedHeaders: ["Authorization", "Content-Type"],
+		// maxAge: 86400,
+	}),
 )
 
 // app.use("*", validateAccessToken)
@@ -48,6 +38,8 @@ app.use("/users", usersRouter)
 app.use("/companies", companiesRouter)
 app.use("/galleries", galleriesRouter)
 app.use("/videos", videosRouter)
+app.use("/fonts", fontsRouter)
+
 //Error handlers
 app.use(ErrorHandlers.notFound)
 app.use(ErrorHandlers.errorHandler)

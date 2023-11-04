@@ -2,24 +2,18 @@
     {
         "gallery_id": "1694893527608",
         "user_id": "1694892853799",
+        "font_id": "169882706561",
         "gallery_name": "Wedding Gallery",
         "img_URL": "https://i.stack.imgur.com/HQwHI.jpg",
-        "font": "Georgia",
-        "hex1": "c39a32",
-        "hex2": "f3efe0",
-        "hex3": "d9bb6d",
         "created_at": "2023-09-16T19:35:10.709Z",
         "updated_at": "2023-09-16T19:35:10.709Z"
     },
     {
         "gallery_id": "1694893552139",
         "user_id": "1694892853799",
+        "font_id": "169882706561",
         "gallery_name": "Commercial Gallery",
         "img_URL": "https://i.stack.imgur.com/HQwHI.jpg",
-        "font": "Georgia",
-        "hex1": "c39a32",
-        "hex2": "f3efe0",
-        "hex3": "d9bb6d",
         "created_at": "2023-09-16T19:35:10.709Z",
         "updated_at": "2023-09-16T19:35:10.709Z"
     }
