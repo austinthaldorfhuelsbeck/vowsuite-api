@@ -46,10 +46,20 @@ const destroy = async (req: Request, res: Response) => {
 	}
 }
 
+const list = async (req: Request, res: Response) => {
+	try {
+		const response: IFont[] = await FontsService.list()
+		res.json(response)
+	} catch (err) {
+		errorHandler(err, res)
+	}
+}
+
 // Exports
 export const FontsController = {
 	create: [FontsValidation.isValidFont, FontsValidation.appendData, create],
 	read: [FontsValidation.fontExists, read],
 	update: [FontsValidation.fontExists, FontsValidation.isValidFont, update],
 	delete: [FontsValidation.fontExists, destroy],
+	list,
 }

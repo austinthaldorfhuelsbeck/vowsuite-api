@@ -7,7 +7,11 @@ import { methodNotAllowed } from "../middleware/error.handlers"
 export const fontsRouter = express.Router()
 
 // Routes
-fontsRouter.route("/").post(FontsController.create).all(methodNotAllowed)
+fontsRouter
+	.route("/")
+	.get(FontsController.list)
+	.post(FontsController.create)
+	.all(methodNotAllowed)
 fontsRouter
 	.route("/:font_id")
 	.get(FontsController.read)

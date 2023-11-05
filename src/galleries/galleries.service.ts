@@ -5,7 +5,6 @@ import {
 	IGallery,
 	IVideo,
 	IBaseGalleryColor,
-	IColor,
 } from "../interfaces/objects.interface"
 
 // Config
@@ -75,10 +74,16 @@ export const updateColor = async (
 		.then((updatedGalleryColors) => updatedGalleryColors[0])
 }
 
-export const listColors = async (id: number): Promise<IColor[]> => {
-	return knex("colors as co")
-		.join("gallery_colors as gc", "co.color_id", "gc.color_id")
-		.join("galleries as g", "g.gallery_id", "gc.gallery_id")
-		.distinct("co.*")
-		.where({ "g.gallery_id": id })
+export const listGalleryColors = async (
+	id: number,
+): Promise<IGalleryColor[]> => {
+	return knex("gallery_colors").select("*").where({ gallery_id: id })
 }
+
+// export const listColors = async (id: number): Promise<IColor[]> => {
+// 	return knex("colors as co")
+// 		.join("gallery_colors as gc", "co.color_id", "gc.color_id")
+// 		.join("galleries as g", "g.gallery_id", "gc.gallery_id")
+// 		.distinct("co.*")
+// 		.where({ "g.gallery_id": id })
+// }
