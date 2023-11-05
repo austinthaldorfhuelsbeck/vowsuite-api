@@ -126,7 +126,7 @@ export const appendChildren = async (
 	const gallery: IGallery = res.locals.foundGallery
 	// Add colors and videos
 	const id: number = gallery.gallery_id
-	gallery.colors = await GalleriesService.listGalleryColors(id)
+	gallery.colors = await GalleriesService.listColors(id)
 	gallery.videos = await GalleriesService.listVideos(id)
 	// Pass thru completed object
 	res.locals.validGallery = gallery

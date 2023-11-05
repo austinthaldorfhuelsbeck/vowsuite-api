@@ -74,9 +74,7 @@ export const updateColor = async (
 		.then((updatedGalleryColors) => updatedGalleryColors[0])
 }
 
-export const listGalleryColors = async (
-	id: number,
-): Promise<IGalleryColor[]> => {
+export const listColors = async (id: number): Promise<IGalleryColor[]> => {
 	return knex("gallery_colors").select("*").where({ gallery_id: id })
 }
 
