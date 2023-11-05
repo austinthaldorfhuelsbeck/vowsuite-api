@@ -43,7 +43,7 @@ export const isValidCompanyUrl = (
 	let message: string = ""
 	if (!companyUrl.company_id) message += "Company ID required. "
 	if (!companyUrl.label) message += "Label required. "
-	if (!companyUrl.target) message += "Target required."
+	if (typeof companyUrl.target !== "string") message += "Target required."
 	// Return err or pass thru locals
 	if (message !== "") {
 		errorHandler({ status: 400, message }, res)

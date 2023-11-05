@@ -33,3 +33,7 @@ export const update = async (
 export const destroy = async (id: number): Promise<void> => {
 	return knex("fonts").where({ font_id: id }).del()
 }
+
+export const list = async (): Promise<IFont[]> => {
+	return knex("fonts").select("*")
+}

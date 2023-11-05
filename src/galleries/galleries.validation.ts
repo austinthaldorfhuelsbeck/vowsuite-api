@@ -124,10 +124,29 @@ export const appendChildren = async (
 ) => {
 	// Get gallery from locals
 	const gallery: IGallery = res.locals.foundGallery
-	// Add colors
+	// Add colors and videos
 	const id: number = gallery.gallery_id
-	gallery.colors = await GalleriesService.listColors(id)
+	gallery.colors = await GalleriesService.listGalleryColors(id)
+	gallery.videos = await GalleriesService.listVideos(id)
 	// Pass thru completed object
 	res.locals.validGallery = gallery
+	return next()
+}
+
+export const appendChildrenToList = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	res.locals.validGalleries = new Array()
+	const galleries: IGallery[] = res.locals.foundGalleries
+	galleries.forEach(async (gallery: IGallery, index: number) => {
+		gallery.colors = await GalleriesService.listGalleryColors(
+			gallery.gallery_id,
+		)
+		gallery.videos = await GalleriesService.listVideos(gallery.gallery_id)
+		res.locals.validGalleries.push(gallery)
+		console.log("Locals: ", res.locals.validGalleries)
+	})
 	return next()
 }
