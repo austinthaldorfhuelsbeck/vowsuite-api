@@ -23,7 +23,7 @@ import {
 const create = async (req: Request, res: Response) => {
 	try {
 		const gallery: IGallery = res.locals.validGallery
-		gallery.gallery_id = new Date().valueOf() // add gallery ID
+		if (!gallery.gallery_id) gallery.gallery_id = new Date().valueOf() // add gallery ID
 		const newGallery: IGallery = await GalleriesService.create(gallery)
 		res.status(201).json(newGallery)
 	} catch (err) {
@@ -90,7 +90,8 @@ const listGalleryColors = async (req: Request, res: Response) => {
 const createGalleryColor = async (req: Request, res: Response) => {
 	try {
 		const galleryColor: IGalleryColor = res.locals.validGalleryColor
-		galleryColor.gallery_color_id = new Date().valueOf() // add id
+		if (!galleryColor.gallery_color_id)
+			galleryColor.gallery_color_id = new Date().valueOf() // add id
 		const response: IGalleryColor =
 			await GalleriesService.createColor(galleryColor)
 		res.json(response)
