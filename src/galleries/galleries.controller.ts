@@ -80,7 +80,7 @@ const listVideos = async (req: Request, res: Response) => {
 const listGalleryColors = async (req: Request, res: Response) => {
 	try {
 		const id: number = parseInt(req.params.gallery_id)
-		const response: IColor[] = await GalleriesService.listColors(id)
+		const response: IGalleryColor[] = await GalleriesService.listColors(id)
 		res.json(response)
 	} catch (err) {
 		errorHandler(err, res)
