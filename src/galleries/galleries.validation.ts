@@ -36,7 +36,7 @@ export const isValidGalleryColor = (
 	// Build error message
 	let message: string = ""
 	if (!galleryColor.gallery_id) message += "Gallery ID required. "
-	if (!galleryColor.color_id) message += "Color ID required. "
+	if (!galleryColor.value) message += "Color required. "
 	// Return err or pass thru locals
 	if (message !== "") {
 		errorHandler({ status: 400, message }, res)
@@ -103,7 +103,11 @@ export const galleryColorExists = async (
 	)
 }
 
-export const appendData = async (req: Request, res: Response, next: NextFunction) => {
+export const appendData = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
 	// Get gallery from locals
 	const gallery: IGallery = res.locals.validGallery
 	// Add created date if none provided
@@ -141,9 +145,7 @@ export const appendChildrenToList = async (
 	res.locals.validGalleries = new Array()
 	const galleries: IGallery[] = res.locals.foundGalleries
 	galleries.forEach(async (gallery: IGallery, index: number) => {
-		gallery.colors = await GalleriesService.listGalleryColors(
-			gallery.gallery_id,
-		)
+		gallery.colors = await GalleriesService.listColors(gallery.gallery_id)
 		gallery.videos = await GalleriesService.listVideos(gallery.gallery_id)
 		res.locals.validGalleries.push(gallery)
 		console.log("Locals: ", res.locals.validGalleries)
