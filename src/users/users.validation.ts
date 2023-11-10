@@ -2,6 +2,7 @@
 import { Request, Response, NextFunction } from "express"
 import * as UsersService from "./users.service"
 import * as CompaniesService from "../companies/companies.service"
+import * as GalleriesService from "../galleries/galleries.service"
 import { IBaseUser, IGallery, IUser } from "../interfaces/objects.interface"
 import { errorHandler } from "../middleware/error.handlers"
 
@@ -104,11 +105,13 @@ export const appendChildren = async (
 	const id: number = user.user_id
 	// Add company
 	user.company = await CompaniesService.readByUserId(id)
-	user.company.colors = await CompaniesService.listCompanyColors(
+	user.company.colors = await CompaniesService.listColors(
 		user.company.company_id,
 	)
+	user.company.urls = await CompaniesService.listUrls(user.company.company_id)
 	// Add galleries
-	user.galleries = await UsersService.listGalleries(id)
+	const galleries: IGallery[] = await UsersService.listGalleries(id)
+	user.galleries = galleries
 	// Pass thru completed object
 	res.locals.validUser = user
 	return next()

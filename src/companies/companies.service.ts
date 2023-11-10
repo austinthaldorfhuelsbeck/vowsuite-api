@@ -76,17 +76,15 @@ export const updateColor = async (
 		.then((updatedCompanyColors) => updatedCompanyColors[0])
 }
 
-export const listColors = async (id: number): Promise<IColor[]> => {
-	return knex("colors as co")
-		.join("company_colors as cc", "co.color_id", "cc.color_id")
-		.join("companies as c", "c.company_id", "cc.company_id")
-		.distinct("co.*")
-		.where({ "c.company_id": id })
-}
+// export const listColors = async (id: number): Promise<IColor[]> => {
+// 	return knex("colors as co")
+// 		.join("company_colors as cc", "co.color_id", "cc.color_id")
+// 		.join("companies as c", "c.company_id", "cc.company_id")
+// 		.distinct("co.*")
+// 		.where({ "c.company_id": id })
+// }
 
-export const listCompanyColors = async (
-	id: number,
-): Promise<ICompanyColor[]> => {
+export const listColors = async (id: number): Promise<ICompanyColor[]> => {
 	return knex("company_colors").select("*").where({ company_id: id })
 }
 

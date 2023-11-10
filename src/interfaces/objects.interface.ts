@@ -20,7 +20,7 @@ export interface IBaseCompany {
 	created_at: Date
 	updated_at: Date
 	colors: ICompanyColor[]
-	company_urls: ICompanyUrl[]
+	urls: ICompanyUrl[]
 }
 
 export interface ICompany extends IBaseCompany {
