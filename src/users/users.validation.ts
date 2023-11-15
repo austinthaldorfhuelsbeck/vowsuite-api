@@ -105,10 +105,14 @@ export const appendChildren = async (
 	const id: number = user.user_id
 	// Add company
 	user.company = await CompaniesService.readByUserId(id)
-	user.company.colors = await CompaniesService.listColors(
-		user.company.company_id,
-	)
-	user.company.urls = await CompaniesService.listUrls(user.company.company_id)
+	if (user.company?.company_id) {
+		user.company.colors = await CompaniesService.listColors(
+			user.company.company_id,
+		)
+		user.company.urls = await CompaniesService.listUrls(
+			user.company.company_id,
+		)
+	}
 	// Add galleries
 	const galleries: IGallery[] = await UsersService.listGalleries(id)
 	user.galleries = galleries

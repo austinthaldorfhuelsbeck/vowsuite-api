@@ -183,8 +183,8 @@ export const appendChildren = async (
 	const company: ICompany = res.locals.foundCompany
 	// Add urls and colors
 	const id: number = company.company_id
-	company.company_urls = await CompaniesService.listUrls(id)
-	company.colors = await CompaniesService.listCompanyColors(id)
+	company.urls = await CompaniesService.listUrls(id)
+	company.colors = await CompaniesService.listColors(id)
 	// Pass thru completed object
 	res.locals.validCompany = company
 	return next()
