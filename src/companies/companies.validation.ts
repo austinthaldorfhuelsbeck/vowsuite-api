@@ -163,6 +163,10 @@ export const appendData = async (
 ) => {
 	// Get company from locals
 	const company: ICompany = res.locals.validCompany
+	// Add ID if none provided
+	if (!company.company_id) {
+		company.company_id = new Date().valueOf()
+	}
 	// Add created date if none provided
 	if (!company.created_at) {
 		company.created_at = new Date()

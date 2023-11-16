@@ -27,7 +27,6 @@ import * as CompaniesService from "./companies.service"
 const create = async (req: Request, res: Response) => {
 	try {
 		const company: ICompany = res.locals.validCompany
-		company.company_id = new Date().valueOf() // add id
 		const newCompany: ICompany = await CompaniesService.create(company)
 		res.json(newCompany)
 	} catch (err) {
